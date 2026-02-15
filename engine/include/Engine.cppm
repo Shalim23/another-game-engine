@@ -1,16 +1,22 @@
 export module age_engine;
+import :system_manager;
 
 namespace age 
 {
 
 export class Engine 
 {
+
 public:
-    Engine();
-    void Initialize();
+  Engine();
+  void Initialize();
 
 private:
-    void Setup();
+  void Setup();
+
+private:
+  SystemManager mSystemManager;
+
 };
 
 } // namespace age
