@@ -1,8 +1,10 @@
-import age_engine;
+import age_demo;
 
-int main() {
-    age::Engine engine{};
-    engine.Initialize();
-    
+int main()
+{
+    Demo demo{};
+    demo.Initialize();
+    demo.Run();
+
     return 0;
 }
