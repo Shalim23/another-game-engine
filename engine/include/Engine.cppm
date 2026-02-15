@@ -1,5 +1,6 @@
 export module age_engine;
 import :system_manager;
+import :world;
 
 namespace age 
 {
@@ -15,7 +16,8 @@ private:
   void Setup();
 
 private:
-  SystemManager mSystemManager;
+  SystemManager mSystemManager{};
+  World mWorld{};
 
 };
 
