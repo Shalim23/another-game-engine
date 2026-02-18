@@ -7,6 +7,5 @@ World::World() {}
 
 void World::Initialize() {}
 
-void World::Setup() {}
 
 } // namespace age

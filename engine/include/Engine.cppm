@@ -12,8 +12,8 @@ public:
   Engine();
   void Initialize();
 
-private:
-  void Setup();
+  SystemManager& GetSystemManager() { return mSystemManager; }
+  const SystemManager& GetSystemManager() const { return mSystemManager; }
 
 private:
   SystemManager mSystemManager{};

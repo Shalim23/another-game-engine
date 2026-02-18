@@ -8,9 +8,6 @@ class World
 public:
   World();
   void Initialize();
-
-private:
-  void Setup();
 };
 
 } // namespace age

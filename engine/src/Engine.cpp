@@ -11,8 +11,4 @@ void Engine::Initialize()
 {
 }
 
-void Engine::Setup() 
-{
-}
-
 }

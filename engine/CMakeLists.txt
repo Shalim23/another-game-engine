@@ -23,4 +23,4 @@ target_sources(${PROJECT_NAME}
         ${PRIVATE_SOURCES}
 )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC SDL3::SDL3)
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
