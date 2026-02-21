@@ -1,11 +1,7 @@
-module age_engine;
+#include <age_engine/World.hpp>
 
 namespace age 
 {
-
-World::World() {}
-
-void World::Initialize() {}
 
 
 } // namespace age

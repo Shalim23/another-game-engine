@@ -1,4 +1,4 @@
-import age_demo;
+#include "Demo.hpp"
 
 int main()
 {

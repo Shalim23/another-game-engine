@@ -1,12 +1,9 @@
 cmake_minimum_required(VERSION 4.0)
-project(another-game-engine)
-
-if(NOT WIN32)
-    message(FATAL_ERROR "This project is only supported on Windows.")
-endif()
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+project(another-game-engine)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 option(CMAKE_BUILD_TYPE "Build type" Debug)

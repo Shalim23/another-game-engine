@@ -1,4 +1,4 @@
-module age_demo;
+#include "Demo.hpp"
 
 Demo::Demo() 
 {

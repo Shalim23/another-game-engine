@@ -1,4 +1,4 @@
-module age_engine;
+#include <age_engine/Engine.hpp>
 
 namespace age 
 {
