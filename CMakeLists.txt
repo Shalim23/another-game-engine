@@ -2,6 +2,20 @@ cmake_minimum_required(VERSION 4.0)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -fmodule-file=std=${CMAKE_SOURCE_DIR}/deps/std.pcm")
+
+project(another-game-engine)
+
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 20)
+        message(STATUS "Clang 20 or newer detected.")
+    else()
+        message(WARNING "Clang 20 or newer is required. You are using Clang ${CMAKE_CXX_COMPILER_VERSION}.")
+    endif()
+else()
+    message(WARNING "Clang 20 or newer is required. Detected compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}.")
+endif()
 
 project(another-game-engine)
 

@@ -1,9 +1,11 @@
 export module age_engine:system_manager;
 
-export namespace age
+import std;
+
+namespace age
 {
 
-class SystemManager
+export class SystemManager
 {
 
 };

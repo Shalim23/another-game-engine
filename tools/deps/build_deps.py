@@ -6,19 +6,19 @@ from pathlib import Path
 class DepsValidator:
     def __init__(self, build_dir: Path):
         self.build_dir = build_dir
-        self.deps_dir = build_dir / "_deps"
-        self.required_deps = ["sdl3-build", "pybind11-build"]
+        self.required_deps = ["_deps/sdl3-build", "_deps/pybind11-build", "std.pcm"]
         
     def check_deps_exist(self) -> bool:
         for dep in self.required_deps:
-            dep_path = self.deps_dir / dep
+            dep_path = self.build_dir / dep
             if not dep_path.exists():
                 print(f"Missing dependency: {dep}")
                 return False
 
-            if not any(dep_path.iterdir()):
-                print(f"Dependency directory empty: {dep}")
-                return False
+            if dep_path.is_dir():
+                if not any(dep_path.iterdir()):
+                    print(f"Dependency directory empty: {dep}")
+                    return False
 
         return True
 
@@ -57,20 +57,27 @@ class DepsBuilder:
     
     def __build_dependencies(self) -> bool:
         try:
-            configs = ["Release"]
-            if sys.platform == "win32":
-                configs.append("Debug")
-
-            for config in configs:
-                result = subprocess.run(
-                    ["cmake", "--build", str(self.build_dir), "--config", config],
-                    capture_output=False,
-                    text=True
-                )
-                
-                if result.returncode != 0:
-                    print(f"ERROR: cmake build failed for {config}", file=sys.stderr)
-                    return False
+            result = subprocess.run(
+                ["cmake", "--build", str(self.build_dir)],
+                capture_output=False,
+                text=True
+            )
+            
+            if result.returncode != 0:
+                print(f"ERROR: cmake build failed", file=sys.stderr)
+                return False
+            
+            if not Path("/usr/lib/llvm-20/share/libc++/v1/std.cppm").exists():
+                print("ERROR: std.cppm not found. Please ensure libc++ is installed.", file=sys.stderr)
+                return False
+            
+            subprocess.check_output([
+                "clang",
+                "-std=c++23", 
+                "-stdlib=libc++", 
+                "-Wno-reserved-module-identifier", 
+                "--precompile", "-o", "deps/std.pcm", 
+                "/usr/lib/llvm-20/share/libc++/v1/std.cppm"])
 
             return True
             

@@ -3,7 +3,7 @@ export module age_engine:world;
 namespace age
 {
 
-class World
+export class World
 {
 
 };
