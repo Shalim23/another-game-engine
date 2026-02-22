@@ -1,6 +1,6 @@
 export module age_engine:world;
 
-export namespace age
+namespace age
 {
 
 class World

@@ -1,11 +1,12 @@
-#pragma once
-#include "SystemManager.hpp"
-#include "World.hpp"
+export module age_engine;
 
-namespace age 
+export import :system_manager;
+import :world;
+
+export namespace age
 {
 
-class Engine 
+class Engine
 {
 
 public:
