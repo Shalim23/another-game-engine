@@ -1,4 +1,4 @@
-#include <age_engine/Engine.hpp>
+module age_engine;
 
 namespace age 
 {
@@ -11,4 +11,4 @@ void Engine::Initialize()
 {
 }
 
-}
+} // namespace age

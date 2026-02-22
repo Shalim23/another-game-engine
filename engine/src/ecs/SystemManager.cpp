@@ -1,6 +1,6 @@
-#include <age_engine/SystemManager.hpp>
+module age_engine;
 
 namespace age
 {
 
-}
+} // namespace age

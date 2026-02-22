@@ -1,8 +1,6 @@
-module;
-
-#include <age_engine/Engine.hpp>
-
 export module demo;
+
+import age_engine;
 
 export class Demo
 {

@@ -1,5 +1,5 @@
 #include <pybind11/pybind11.h>
-#include <age_engine/Engine.hpp>
+import age_engine;
 
 namespace py = pybind11;
 

@@ -1,7 +1,6 @@
-#include <age_engine/World.hpp>
+module age_engine;
 
 namespace age 
 {
-
 
 } // namespace age

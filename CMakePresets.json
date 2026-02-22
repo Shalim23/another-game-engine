@@ -1,0 +1,15 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "Default (Clang + Ninja)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    }
+  ]
+}

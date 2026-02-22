@@ -1,4 +1,4 @@
-import Demo;
+import demo;
 
 int main()
 {
