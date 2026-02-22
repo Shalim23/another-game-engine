@@ -1,4 +1,4 @@
-#include "Demo.hpp"
+import Demo;
 
 int main()
 {

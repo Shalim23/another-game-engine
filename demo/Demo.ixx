@@ -1,7 +1,10 @@
-#pragma once
+module;
+
 #include <age_engine/Engine.hpp>
 
-class Demo
+export module demo;
+
+export class Demo
 {
 
 public:
