@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 4.2)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -11,10 +11,10 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 20)
         message(STATUS "Clang 20 or newer detected.")
     else()
-        message(WARNING "Clang 20 or newer is required. You are using Clang ${CMAKE_CXX_COMPILER_VERSION}.")
+        message(FATAL_ERROR "Clang 20 or newer is required. You are using Clang ${CMAKE_CXX_COMPILER_VERSION}.")
     endif()
 else()
-    message(WARNING "Clang 20 or newer is required. Detected compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}.")
+    message(FATAL_ERROR "Clang 20 or newer is required. Detected compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}.")
 endif()
 
 project(another-game-engine)
