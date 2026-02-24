@@ -11,4 +11,7 @@ void Demo::Initialize()
 
 void Demo::Run() 
 {
+    while(mEngine.runFrame())
+    { 
+    }
 }

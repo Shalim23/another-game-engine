@@ -16,5 +16,20 @@ void Engine::init()
 
 bool Engine::runFrame()
 {
-    return true;
+    bool running = true;
+
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        switch (event.type)
+        {
+            case SDL_EVENT_QUIT:
+            {
+                running = false;
+                break;
+            }
+        }
+    }
+
+    return running;
 }
