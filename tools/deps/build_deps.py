@@ -6,7 +6,10 @@ from pathlib import Path
 class DepsValidator:
     def __init__(self, build_dir: Path):
         self.build_dir = build_dir
-        self.required_deps = ["_deps/sdl3-build", "_deps/pybind11-build", "std.pcm"]
+        self.required_deps = ["_deps/sdl3-build", "_deps/pybind11-build"]
+
+        if sys.platform in ["linux", "darwin"]:
+            self.required_deps.append("std.pcm")
         
     def check_deps_exist(self) -> bool:
         for dep in self.required_deps:
@@ -67,17 +70,18 @@ class DepsBuilder:
                 print(f"ERROR: cmake build failed", file=sys.stderr)
                 return False
             
-            if not Path("/usr/lib/llvm-20/share/libc++/v1/std.cppm").exists():
-                print("ERROR: std.cppm not found. Please ensure libc++ is installed.", file=sys.stderr)
-                return False
-            
-            subprocess.check_output([
-                "clang",
-                "-std=c++23", 
-                "-stdlib=libc++", 
-                "-Wno-reserved-module-identifier", 
-                "--precompile", "-o", "deps/std.pcm", 
-                "/usr/lib/llvm-20/share/libc++/v1/std.cppm"])
+            if sys.platform in ["linux", "darwin"]:
+                if not Path("/usr/lib/llvm-20/share/libc++/v1/std.cppm").exists():
+                    print("ERROR: std.cppm not found. Please ensure libc++ is installed.", file=sys.stderr)
+                    return False
+                
+                subprocess.check_output([
+                    "clang",
+                    "-std=c++23", 
+                    "-stdlib=libc++", 
+                    "-Wno-reserved-module-identifier", 
+                    "--precompile", "-o", "deps/std.pcm", 
+                    "/usr/lib/llvm-20/share/libc++/v1/std.cppm"])
 
             return True
             

@@ -7,6 +7,20 @@ file(GLOB_RECURSE PRIVATE_SOURCES "src/*.cpp")
 file(GLOB_RECURSE PUBLIC_MODULE_SOURCES "include/*.ixx")
 file(GLOB_RECURSE PRIVATE_MODULE_SOURCES "src/*.ixx")
 
+if(WIN32)
+    source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src"
+                 PREFIX "src"
+                 FILES ${PRIVATE_SOURCES})
+
+    source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/include"
+                 PREFIX "include"
+                 FILES ${PUBLIC_MODULE_SOURCES})
+
+    source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src"
+                 PREFIX "src"
+                 FILES ${PRIVATE_MODULE_SOURCES})
+endif()
+
 add_library(${PROJECT_NAME} ${PRIVATE_SOURCES})
 
 target_sources(${PROJECT_NAME}
