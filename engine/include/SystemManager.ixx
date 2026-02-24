@@ -4,5 +4,4 @@ import std;
 
 class SystemManager
 {
-
 };
