@@ -20,7 +20,7 @@
     {
       "name": "msvc",
       "displayName": "MSVC (Release, x64)",
-      "generator": "Visual Studio 17 2022",
+      "generator": "Visual Studio 18 2026",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "cl",
