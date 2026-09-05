@@ -40,6 +40,9 @@ tooling, third-party glue. No default exemptions.
   auto-closes the issue — no separate manual step.
 - Issue/project-state audits (are open issues still accurate, anything to
   close or rewrite) happen ad hoc, whenever asked — no fixed cadence.
+- Repo is squash-merge only (merge/rebase merges disabled): a PR's commits,
+  however many, always collapse into one commit on `main`. Feature branches
+  are auto-deleted on merge.
 
 ## Roles
 
