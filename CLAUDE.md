@@ -3,10 +3,6 @@
 Rules and process only. Architecture, design, and technical decisions live in
 separate docs (e.g. `docs/`) and are referenced from here, never duplicated here.
 
-## Stack
-
-Not decided yet. Once chosen, record it here (language, framework, build tooling).
-
 ## Coding rule: hints, not code
 
 The user writes all game/engine code by hand, to keep the skill sharp. This
@@ -27,7 +23,8 @@ tooling, third-party glue. No default exemptions.
 - **Implementation**: hints/pseudocode only, per the rule above.
 - **Review**: manual and on-demand. The user asks for a review (e.g.
   `/code-review`) when a chunk of work feels ready. No automatic gating on
-  commits.
+  commits. This is a separate, fresh-context pass rather than a persona —
+  independence comes from fresh context, not from a different role.
 
 ## Git process
 
@@ -43,11 +40,3 @@ tooling, third-party glue. No default exemptions.
 - Repo is squash-merge only (merge/rebase merges disabled): a PR's commits,
   however many, always collapse into one commit on `main`. Feature branches
   are auto-deleted on merge.
-
-## Roles
-
-No standing architect/co-dev/tester personas. Instead:
-- Plan mode covers architecture/design discussion.
-- Implementation is hints-only pairing (see above).
-- Review is a separate, fresh-context pass invoked on demand — independence
-  comes from fresh context, not from a different persona.
