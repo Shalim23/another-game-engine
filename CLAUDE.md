@@ -31,6 +31,10 @@ tooling, third-party glue. No default exemptions.
 - Every code change goes through a GitHub issue + PR. No direct commits/pushes
   to `main` — branch protection on `main` enforces this (PRs required, no
   force-push, no deletion, enforced for admins too).
+- Claude asks before running the GitHub-facing actions themselves — creating
+  an issue, pushing a branch, opening a PR. Agreeing on the content/plan for
+  a change is not standing approval to also chain those actions automatically.
+- Merging a PR is always the user's action, never Claude's.
 - Issues are plain: descriptive title, description only if useful for later
   implementation. No labels, milestones, or other categorization for now.
 - Open decisions/questions (e.g. "what tech stack") are tracked as issues too,
