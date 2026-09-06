@@ -26,6 +26,19 @@ tooling, third-party glue. No default exemptions.
   commits. This is a separate, fresh-context pass rather than a persona —
   independence comes from fresh context, not from a different role.
 
+## Docs structure
+
+Docs (`docs/`) are split one-topic-per-file, not one large doc, so Claude
+only needs to read what's relevant to the task instead of a whole tree.
+
+- `docs/README.md` is the index: title + one-line description per doc, no
+  content of its own — mirrors this repo's memory-index pattern.
+- Split a doc once it covers more than one topic/decision or grows past
+  ~200-300 lines.
+- Docs link to each other; never duplicate content across docs (same
+  no-duplication principle as the top of this file).
+- Prefer short declarative bullets over prose paragraphs.
+
 ## Git process
 
 - Every code change goes through a GitHub issue + PR. No direct commits/pushes
