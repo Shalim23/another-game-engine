@@ -33,6 +33,10 @@ tooling, third-party glue. No default exemptions.
   force-push, no deletion, enforced for admins too).
 - Issues are plain: descriptive title, description only if useful for later
   implementation. No labels, milestones, or other categorization for now.
+- Open decisions/questions (e.g. "what tech stack") are tracked as issues too,
+  titled `Decide: <topic>`, instead of a separate open-questions doc. Resolve
+  by closing manually with the decision noted in a comment, or via a PR that
+  records the decision in the relevant doc (same `Closes #N` flow).
 - Every PR links its issue with a closing keyword (`Closes #N`) so merging
   auto-closes the issue — no separate manual step.
 - Issue/project-state audits (are open issues still accurate, anything to
