@@ -5,12 +5,14 @@ description: Summarize open decisions, issues, PRs, and pending local changes
 Give a concise project status report. Run these and summarize the results,
 don't just dump raw output:
 
-1. `gh issue list --state open` — split into two buckets by title: those
+1. `git fetch --prune` — sync remote refs first, so branch/PR state below
+   isn't read from a stale local view.
+2. `gh issue list --state open` — split into two buckets by title: those
    starting with `Decide:` (open decisions/questions) and everything else
    (open feature/work issues).
-2. `gh pr list --state open` — PRs awaiting review or merge.
-3. `git status --short` — uncommitted local changes.
-4. `git branch -vv` — local branches, noting any not tracking a remote or
+3. `gh pr list --state open` — PRs awaiting review or merge.
+4. `git status --short` — uncommitted local changes.
+5. `git branch -vv` — local branches, noting any not tracking a remote or
    ahead/behind origin.
 
 Structure the report as:
