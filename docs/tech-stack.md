@@ -16,7 +16,6 @@ These shape the choices below, not just "what ships fastest":
 - Clang 23, installed from LLVM's official apt repo (`apt.llvm.org`).
 - Binaries are versioned (`clang-23`, `clang++-23`) — the build points at
   them explicitly, no bare `clang`/`clang++` symlink.
-- GCC remains installed, unused by this project.
 
 ## Build system
 
