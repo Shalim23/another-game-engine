@@ -5,7 +5,7 @@
 These shape the choices below, not just "what ships fastest":
 
 - Deepen C++/modules knowledge.
-- Deepen cross-language FFI/binding experience (C++ ↔ another language).
+- Use modern, current tooling and practices.
 
 ## Language
 
@@ -35,23 +35,30 @@ These shape the choices below, not just "what ships fastest":
   rendering abstraction over Vulkan/D3D12/Metal.
 - Rendering pipeline, ECS, and scene graph are built on top of SDL3, not
   provided by it.
+- 2D only.
 
 ## Editor
 
-- PySide6 (Qt) owns the editor shell: `QApplication`, top-level window,
-  docks, menus, inspectors, layout.
-- C++/SDL3/Vulkan owns the viewport window, rendering, swapchain, and
-  input — a single embedded viewport, no detached/floating Qt viewport
-  windows.
-- Embedding direction: Qt creates the native child window; SDL wraps it
-  (`SDL_CreateWindowWithProperties`). Fetch the X11 window id via
-  `SDL_GetNumberProperty(..., SDL_PROP_WINDOW_X11_WINDOW_NUMBER, 0)` — it's
-  numeric, not a pointer property.
-- Qt's event loop does not pump SDL events on its own — SDL is polled from
-  the Qt/main thread via a timer-driven tick.
-- Qt controls the embedded window's resize; on resize, mark the Vulkan
-  swapchain dirty and recreate it. No GL/Vulkan context sharing between Qt
-  and the engine.
-- nanobind exposes high-level engine commands and state to the editor, not
-  individual render objects. Release the GIL for long-running C++ calls;
-  reacquire it for any callback into Python.
+- Dear ImGui (docking branch) owns the editor UI — panels, docks, menus,
+  inspectors, and the viewport panel — drawn in-process in the same SDL3
+  window and `SDL_GPU` swapchain as the engine. No second GUI toolkit, no
+  embedded/foreign native window.
+- SDL3 and Dear ImGui (plus its `imgui_impl_sdl3`/`imgui_impl_sdlgpu3`
+  backends) are wrapped behind hand-written module interface units — their
+  headers are included only inside those wrapper modules' global module
+  fragments, never included directly elsewhere in the project.
+- Per frame: build the ImGui UI first (this fixes the viewport panel's
+  content-region size/position for the frame), render the scene into an
+  offscreen `SDL_GPU` texture sized to that viewport panel, then render
+  ImGui's draw data — which samples that texture via `ImGui::Image()` for
+  the viewport panel — into the swapchain backbuffer, then present.
+- The offscreen scene texture and the swapchain backbuffer are cleared
+  separately, as two independent render passes.
+- Viewport input (camera control, picking, etc.) is routed to the engine
+  only when the viewport panel reports hover/focus
+  (`ImGui::IsWindowHovered()` / `IsItemHovered()`); everything else goes
+  through ImGui's own input handling.
+- Detaching a panel to its own OS-level window uses ImGui's multi-viewport
+  mode (`ImGuiConfigFlags_ViewportsEnable`), not foreign-window embedding.
+- No cross-language FFI boundary — editor and engine are both C++, no
+  bindings layer.
