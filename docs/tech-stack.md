@@ -36,6 +36,8 @@ These shape the choices below, not just "what ships fastest":
 - Rendering pipeline, ECS, and scene graph are built on top of SDL3, not
   provided by it.
 - 2D only.
+- ECS storage: sparse-set (per-component pools, dense/sparse arrays,
+  generational entity IDs). Exact layout finalized during implementation.
 
 ## Editor
 
