@@ -21,6 +21,9 @@ These shape the choices below, not just "what ships fastest":
 
 - CMake + Ninja. Ninja is required for CMake's C++ module dependency
   scanning.
+- See [repo-structure.md](repo-structure.md) for folder layout and
+  [build-orchestration.md](build-orchestration.md) for how engine/demo are
+  built and shipped.
 
 ## Dependency management
 
