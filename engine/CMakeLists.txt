@@ -10,7 +10,7 @@ set(CMAKE_CXX_MODULE_STD ON)
 set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "f35a9ac6-8463-4d38-8eec-5d6008153e7d")
 set(CMAKE_CXX_STDLIB_MODULES_JSON "/usr/lib/llvm-23/lib/libc++.modules.json")
 
-project(engine CXX)
+project(engine CXX C)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -25,6 +25,31 @@ if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR
   message(FATAL_ERROR "At least clang++-23 is required")
 endif()
 
+if(NOT CMAKE_C_COMPILER_ID STREQUAL "Clang" OR
+  CMAKE_C_COMPILER_VERSION VERSION_LESS "23")
+  message(FATAL_ERROR "At least clang-23 is required")
+endif()
+
+include(FetchContent)
+
+set(SDL_STATIC ON)
+set(SDL_SHARED OFF)
+set(SDL_TEST_LIBRARY OFF)
+set(SDL_TESTS OFF)
+set(SDL_EXAMPLES OFF)
+set(SDL_DISABLE_INSTALL ON)
+set(SDL_DISABLE_INSTALL_DOCS ON)
+
+FetchContent_Declare(
+  SDL3
+  GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
+  GIT_TAG release-3.4.16
+  GIT_SHALLOW TRUE
+  EXCLUDE_FROM_ALL
+)
+
+FetchContent_MakeAvailable(SDL3)
+
 #TODO add_library once demo is implemented
 add_executable(${PROJECT_NAME} "src/main.cpp")
 
@@ -35,3 +60,5 @@ target_sources(${PROJECT_NAME} PUBLIC
 
 target_sources(${PROJECT_NAME} PRIVATE
   "src/engine.cpp")
+
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)

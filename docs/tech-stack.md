@@ -39,6 +39,11 @@ These shape the choices below, not just "what ships fastest":
 - Rendering pipeline, ECS, and scene graph are built on top of SDL3, not
   provided by it.
 - 2D only.
+- Linux build requires X11 and Wayland development headers so SDL3 can
+  build a real windowing backend (not just the dummy/offscreen one):
+  `libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev
+  libxfixes-dev libxss-dev libxtst-dev libwayland-dev libxkbcommon-dev
+  libdecor-0-dev`.
 - ECS storage: sparse-set (per-component pools, dense/sparse arrays,
   generational entity IDs). Exact layout finalized during implementation.
 
